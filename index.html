@@ -111,17 +111,16 @@
 
         .location-content {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
 
         .location-details {
-            flex: 1 1 400px;
             padding: 30px;
         }
 
         .location-map {
-            flex: 1 1 400px;
-            min-height: 300px;
+            width: 100%;
+            height: 350px;
         }
 
         .location-map iframe {
@@ -132,14 +131,15 @@
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin-top: 20px;
+            margin-bottom: 30px;
         }
         
         .gallery img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -225,13 +225,14 @@
             </div>
             <div class="location-content">
                 <div class="location-details">
-                    <h4>Property Highlights</h4>
-                    <p style="margin-top: 10px; color: #555;">Located near the beautiful Taiping Lake Gardens. Perfect for morning walks and experiencing the historic charm of the city.</p>
-                    <br>
+                    <p style="color: #555; font-size: 1.1rem; margin-bottom: 20px;">Located near the beautiful Taiping Lake Gardens. Perfect for morning walks and experiencing the historic charm of the city.</p>
+                    
                     <h4>Gallery</h4>
                     <div class="gallery">
-                        <img src="https://images.unsplash.com/photo-1560448204-61dc36dc98c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lakeview Bedroom">
-                        <img src="https://images.unsplash.com/photo-1522771731478-44eb10e5c141?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lakeview Living Area">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795764.jpg?k=0e48c09649f9a94fdbf37aa7c953d499e1695d017013440d74b9583d033bef2c&o=" alt="Lakeview Property Image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795805.jpg?k=06585e6695abb5c70b03033fb2ba1e04e3400119a86daaad8f469fd74ba85d06&o=" alt="Lakeview Property Image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795956.jpg?k=0857453bc96262692271d32d8ce716b3d05bd002db7492a278d61926a5200a4c&o=" alt="Lakeview Property Image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795817.jpg?k=79d7a61acfcf10bf4d84138891ce1ac4bbd9c48d4bae967e257d5ef95a62e72e&o=" alt="Lakeview Property Image">
                     </div>
                 </div>
                 <div class="location-map">
@@ -249,18 +250,19 @@
                 </div>
             </div>
             <div class="location-content">
-                <div class="location-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.185675685233!2d100.7246560758364!3d4.860144639912774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caaf0aed64b9a5%3A0xa66405fe9fd7ee17!2sSimple%20Home!5e0!3m2!1sen!2sus!4v1711425123457!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
                 <div class="location-details">
-                    <h4>Property Highlights</h4>
-                    <p style="margin-top: 10px; color: #555;">A quiet, residential retreat offering quick access to local eateries and the vibrant Taiping food scene.</p>
-                    <br>
+                    <p style="color: #555; font-size: 1.1rem; margin-bottom: 20px;">A quiet, residential retreat offering quick access to local eateries and the vibrant Taiping food scene.</p>
+                    
                     <h4>Gallery</h4>
                     <div class="gallery">
-                        <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Suria Aman Kitchen">
-                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Suria Aman Bathroom">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961113.jpg?k=c9671779fd14d84f700540ad2a1a9b7ef512b15c475e0f9081dd37cda201adba&o=" alt="Suria Aman Property Image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961208.jpg?k=2fd1606f8c4e0e2d5c8fe30e006d1ca2c60d74a1d41c3491264310702a3c360b&o=" alt="Suria Aman Property Image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961212.jpg?k=03b7d97c2d635f4152ec1a870eb728ee44025e1ae333c9cc1d219e386c6ead1a&o=" alt="Suria Aman Property Image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961321.jpg?k=47c55765233f3c4be12ca37cdbfa95ef06bd4ea01b5232368998f42766662f91&o=" alt="Suria Aman Property Image">
                     </div>
+                </div>
+                <div class="location-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.185675685233!2d100.7246560758364!3d4.860144639912774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caaf0aed64b9a5%3A0xa66405fe9fd7ee17!2sSimple%20Home!5e0!3m2!1sen!2sus!4v1711425123457!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
