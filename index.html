@@ -129,24 +129,57 @@
             border: 0;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+        /* New Interactive Gallery Styles */
+        .gallery-container {
+            width: 100%;
             margin-top: 20px;
             margin-bottom: 30px;
         }
-        
-        .gallery img {
+
+        .main-image {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 400px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #eee;
         }
 
-        .gallery img:hover {
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .thumbnail-slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+
+        .thumbnail-slider img {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s, transform 0.3s, border-color 0.3s;
+            border: 2px solid transparent;
+            flex-shrink: 0;
+        }
+
+        .thumbnail-slider img:hover, .thumbnail-slider img.active {
+            opacity: 1;
+            border-color: var(--secondary);
             transform: scale(1.05);
         }
 
@@ -200,6 +233,8 @@
             header h1 { font-size: 2.5rem; }
             .phone-number { font-size: 2rem; }
             .location-header { flex-direction: column; text-align: center; }
+            .main-image { height: 250px; }
+            .thumbnail-slider img { width: 90px; height: 60px; }
         }
     </style>
 </head>
@@ -228,11 +263,21 @@
                     <p style="color: #555; font-size: 1.1rem; margin-bottom: 20px;">Located near the beautiful Taiping Lake Gardens. Perfect for morning walks and experiencing the historic charm of the city.</p>
                     
                     <h4>Gallery</h4>
-                    <div class="gallery">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795764.jpg?k=0e48c09649f9a94fdbf37aa7c953d499e1695d017013440d74b9583d033bef2c&o=" alt="Lakeview Property Image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795805.jpg?k=06585e6695abb5c70b03033fb2ba1e04e3400119a86daaad8f469fd74ba85d06&o=" alt="Lakeview Property Image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795956.jpg?k=0857453bc96262692271d32d8ce716b3d05bd002db7492a278d61926a5200a4c&o=" alt="Lakeview Property Image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795817.jpg?k=79d7a61acfcf10bf4d84138891ce1ac4bbd9c48d4bae967e257d5ef95a62e72e&o=" alt="Lakeview Property Image">
+                    <div class="gallery-container">
+                        <div class="main-image">
+                            <img id="main-lakeview" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795764.jpg?k=0e48c09649f9a94fdbf37aa7c953d499e1695d017013440d74b9583d033bef2c&o=" alt="Lakeview Property Preview">
+                        </div>
+                        <div class="thumbnail-slider">
+                            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795764.jpg?k=0e48c09649f9a94fdbf37aa7c953d499e1695d017013440d74b9583d033bef2c&o=" class="active" onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 1">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795805.jpg?k=06585e6695abb5c70b03033fb2ba1e04e3400119a86daaad8f469fd74ba85d06&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 2">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795956.jpg?k=0857453bc96262692271d32d8ce716b3d05bd002db7492a278d61926a5200a4c&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 3">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795817.jpg?k=79d7a61acfcf10bf4d84138891ce1ac4bbd9c48d4bae967e257d5ef95a62e72e&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 4">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795790.jpg?k=189ee9099207695a415bc3c6b9b832ac2bb3c041664f7597962d97b3fb32f9e3&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 5">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795920.jpg?k=9ff2dc4309d3a49c47a57f54c602b94f81f9b64d4c9c9747a10ba59dd98fd707&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 6">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795827.jpg?k=613655c76c59d8629b51b78eef8b65efbab81886c033894d96a96448e98062bc&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 7">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/355795880.jpg?k=ca4adfb19dba5b9a49ac8dfabba08e26d489a9939c3e8893b53238b1c970e4ad&o="  onclick="changeImage('main-lakeview', this.src, this)" alt="Thumbnail 8">
+
+                        </div>
                     </div>
                 </div>
                 <div class="location-map">
@@ -254,11 +299,21 @@
                     <p style="color: #555; font-size: 1.1rem; margin-bottom: 20px;">A quiet, residential retreat offering quick access to local eateries and the vibrant Taiping food scene.</p>
                     
                     <h4>Gallery</h4>
-                    <div class="gallery">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961113.jpg?k=c9671779fd14d84f700540ad2a1a9b7ef512b15c475e0f9081dd37cda201adba&o=" alt="Suria Aman Property Image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961208.jpg?k=2fd1606f8c4e0e2d5c8fe30e006d1ca2c60d74a1d41c3491264310702a3c360b&o=" alt="Suria Aman Property Image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961212.jpg?k=03b7d97c2d635f4152ec1a870eb728ee44025e1ae333c9cc1d219e386c6ead1a&o=" alt="Suria Aman Property Image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961321.jpg?k=47c55765233f3c4be12ca37cdbfa95ef06bd4ea01b5232368998f42766662f91&o=" alt="Suria Aman Property Image">
+                    <div class="gallery-container">
+                        <div class="main-image">
+                            <img id="main-suria" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961113.jpg?k=c9671779fd14d84f700540ad2a1a9b7ef512b15c475e0f9081dd37cda201adba&o=" alt="Suria Aman Property Preview">
+                        </div>
+                        <div class="thumbnail-slider">
+                            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961113.jpg?k=c9671779fd14d84f700540ad2a1a9b7ef512b15c475e0f9081dd37cda201adba&o=" class="active" onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 1">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961208.jpg?k=2fd1606f8c4e0e2d5c8fe30e006d1ca2c60d74a1d41c3491264310702a3c360b&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 2">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961212.jpg?k=03b7d97c2d635f4152ec1a870eb728ee44025e1ae333c9cc1d219e386c6ead1a&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 3">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961321.jpg?k=47c55765233f3c4be12ca37cdbfa95ef06bd4ea01b5232368998f42766662f91&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 4">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961301.jpg?k=2c70624547b5908d69dabbfd6acf952f82f3ad13ea5c2a80f9aa47cc5a2c4ee4&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 5">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/600485796.jpg?k=6178b91c1af1d81e6a43d143e49748c8724661f38dd8c73e6ba7adb6cefaed91&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 6">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961199.jpg?k=6960443a86f9405aadc0cd6a6742e2c336a484ac8541f2ba4223fa39755483ff&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 7">
+<img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/449961289.jpg?k=609de54a5adecbe245f1d9a16ffccb29d42563da8aeee0187585cc1fb10f913f&o="  onclick="changeImage('main-suria', this.src, this)" alt="Thumbnail 8">
+
+                        </div>
                     </div>
                 </div>
                 <div class="location-map">
@@ -284,5 +339,24 @@
         &copy; 2026 Simple Home Taiping Homestay. All rights reserved.
     </footer>
 
+    <script>
+        function changeImage(mainImageId, newSrc, thumbnailEl) {
+            // Fade out slightly
+            const mainImg = document.getElementById(mainImageId);
+            mainImg.style.opacity = 0.7;
+            
+            setTimeout(() => {
+                mainImg.src = newSrc;
+                mainImg.style.opacity = 1;
+            }, 150);
+
+            // Update active state on thumbnails
+            const siblings = thumbnailEl.parentElement.children;
+            for (let i = 0; i < siblings.length; i++) {
+                siblings[i].classList.remove('active');
+            }
+            thumbnailEl.classList.add('active');
+        }
+    </script>
 </body>
 </html>
