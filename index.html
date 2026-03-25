@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Home | Taiping Homestay</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --light: #f9f9f9;
+            --dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .cta-btn {
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .cta-btn:hover {
+            background-color: #d35400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .locations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .location-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            flex: 1 1 300px;
+            max-width: 500px;
+            text-align: center;
+            border-top: 5px solid var(--primary);
+        }
+
+        .location-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .location-card p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .contact-section {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .phone-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 20px 0;
+            display: inline-block;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+
+        footer {
+            background-color: #1a252f;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media(max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .phone-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Simple Home Taiping</h1>
+        <p>A peaceful retreat in Taiping, a hidden food haven filled with historic gems. <br>简居位于太平市，一个充满历史的美食天堂。</p>
+        <a href="#contact" class="cta-btn">Book Your Stay Today</a>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Our Locations</h2>
+        <div class="locations">
+            <div class="location-card">
+                <h3>Taman Lakeview</h3>
+                <p>15, Lorong 4, Taman Lakeview</p>
+                <p>Taiping, Perak 34000</p>
+            </div>
+            
+            <div class="location-card">
+                <h3>Taman Suria Aman</h3>
+                <p>21, Jalan Suria Aman 3, Taman Suria Aman</p>
+                <p>Taiping, Perak 34000</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="contact-section">
+        <h2>Ready to book your getaway?</h2>
+        <p>Call or message us directly for the best rates and availability.</p>
+        <p>有问题欢迎联络</p>
+        
+        <a href="tel:+60123788781" class="phone-number">+6 012-378 8781</a>
+        <p><strong>Mr. James Kan</strong></p>
+        
+        <br>
+        <a href="https://wa.me/60123788781" class="whatsapp-btn">Chat with us on WhatsApp</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Simple Home Taiping Homestay. All rights reserved.
+    </footer>
+
+</body>
+</html>
