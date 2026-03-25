@@ -291,7 +291,80 @@
             .thumbnail-slider img { width: 100px; height: 65px; }
             .location-details { padding: 30px 20px; }
         }
-    </style>
+    
+        /* Booking Widget Styles */
+        .booking-widget {
+            background: white;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: -60px auto 40px auto;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+
+        .input-group {
+            flex: 1 1 200px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .input-group input, .input-group select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            color: var(--primary);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--secondary);
+        }
+
+        .check-availability-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1 1 200px;
+            height: 47px;
+        }
+
+        .check-availability-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+</style>
 
 </head>
 <body>
@@ -299,8 +372,30 @@
     <header>
         <h1>Simple Home Taiping</h1>
         <p>A peaceful retreat in Taiping, a hidden food haven filled with historic gems. <br>简居位于太平市，一个充满历史的美食天堂。</p>
-        <a href="#contact" class="cta-btn">Book Your Stay Today</a>
+        <a href="#booking-widget" class="cta-btn">Book Your Stay Today</a>
     </header>
+
+    <!-- Floating Booking Widget -->
+    <div class="booking-widget" id="booking-widget">
+        <div class="input-group">
+            <label for="location">Location</label>
+            <select id="location">
+                <option value="Taman Lakeview">Taman Lakeview</option>
+                <option value="Taman Suria Aman">Taman Suria Aman</option>
+                <option value="Any Available">Any Available Location</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="checkin">Check-In</label>
+            <input type="date" id="checkin">
+        </div>
+        <div class="input-group">
+            <label for="checkout">Check-Out</label>
+            <input type="date" id="checkout">
+        </div>
+        <button class="check-availability-btn" onclick="checkAvailability()">Check Availability</button>
+    </div>
+
 
     <div class="container">
         <h2 class="section-title">Our Homestay Locations</h2>
@@ -414,5 +509,50 @@
             thumbnailEl.classList.add('active');
         }
     </script>
+
+    <script>
+        // Set minimum dates to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("checkin").min = today;
+        document.getElementById("checkout").min = today;
+
+        function checkAvailability() {
+            const location = document.getElementById('location').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+
+            if(!checkin || !checkout) {
+                alert("Please select both your check-in and check-out dates.");
+                return;
+            }
+            
+            if(checkin >= checkout) {
+                alert("Check-out date must be after check-in date.");
+                return;
+            }
+
+            // Format dates
+            const dateIn = new Date(checkin).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            const dateOut = new Date(checkout).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            // Construct the WhatsApp Message
+            const phone = "60123788781";
+            const message = `Hello Mr. James! I would like to check availability at Simple Home Taiping.
+
+*Location:* ${location}
+*Check-in:* ${dateIn}
+*Check-out:* ${dateOut}
+
+Is this available?`;
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
+
 </html>
