@@ -343,7 +343,7 @@
         }
 
         .check-availability-btn {
-            background-color: var(--primary);
+            background-color: #25D366; /* WhatsApp green */
             color: white;
             padding: 14px 30px;
             border: none;
@@ -357,11 +357,27 @@
             transition: all 0.3s ease;
             flex: 1 1 200px;
             height: 47px;
+            display: flex; /* Added for icon alignment */
+            align-items: center; /* Added for vertical alignment */
+            justify-content: center; /* Centers content */
+            gap: 8px; /* Space between text and icon */
         }
 
         .check-availability-btn:hover {
-            background-color: var(--secondary);
+            background-color: #1DA851; /* Darker green on hover */
             transform: translateY(-2px);
+        }
+
+        /* Style for the WhatsApp icon within the button */
+        .check-availability-btn .whatsapp-icon-svg {
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Style to ensure date input fields have a pointer cursor */
+        .input-group input[type="date"] {
+            cursor: pointer;
         }
 
 </style>
@@ -393,7 +409,12 @@
             <label for="checkout">Check-Out</label>
             <input type="date" id="checkout">
         </div>
-        <button class="check-availability-btn" onclick="checkAvailability()">Check Availability</button>
+        <button class="check-availability-btn" onclick="checkAvailability()">
+    Check Availability
+    <svg class="whatsapp-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521c-1.244 0-2.435-.275-3.462-.799l-2.651.697.705-2.647c-.523-1.027-.798-2.218-.798-3.462 0-3.659 2.964-6.63 6.618-6.63 1.763 0 3.433.692 4.683 1.943s1.94 2.924 1.94 4.68c-.004 3.66-2.963 6.624-6.622 6.624h.004zm-.004-5.228c-.694 0-1.135.26-1.52.702-.192.22-.395.455-.6.69-.129.157-.294.334-.486.516-.29.278-.667.653-1.009.91-.303.23-.6.447-.803.56-.375.21-.75.337-1.13.337-.174 0-.466-.062-.727-.245-.23-.163-.33-.3-.33-.483-.004-.216.037-.367.094-.484.053-.109.13-.236.257-.368.127-.132.256-.258.384-.383.128-.125.26-.25.388-.376.1-.1.173-.178.257-.26.4-.4.8-1.04 1.15-1.557.348-.507.697-1.01.99-1.396.345-.443.468-.616.468-.616.29-.395.4-.593.593-.593.09 0 .2.02.26.04.09.02.164.093.203.18.06.136.084.2.09.28.006.08-.01.16-.03.24-.03.09-.06.18-.08.27-.02.09-.04.17-.06.26-.02.09-.04.17-.06.26z"/>
+    </svg>
+</button>
     </div>
 
 
