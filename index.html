@@ -450,11 +450,11 @@
         </div>
         <div class="input-group">
             <label for="checkin">Check-In</label>
-            <input type="date" id="checkin" readonly onclick="this.removeAttribute('readonly'); if(this.showPicker) this.showPicker(); this.setAttribute('readonly','');">
+            <input type="date" id="checkin">
         </div>
         <div class="input-group">
             <label for="checkout">Check-Out</label>
-            <input type="date" id="checkout" readonly onclick="this.removeAttribute('readonly'); if(this.showPicker) this.showPicker(); this.setAttribute('readonly','');">
+            <input type="date" id="checkout">
         </div>
         <button class="check-availability-btn" onclick="checkAvailability()">
     Check Availability
@@ -608,6 +608,15 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById("checkin").min = today;
         document.getElementById("checkout").min = today;
+
+        // Open native date picker when clicking anywhere on the date field
+        document.querySelectorAll('input[type="date"]').forEach(function(input) {
+            input.addEventListener('click', function() {
+                if (this.showPicker) {
+                    try { this.showPicker(); } catch(e) { /* ignore if already focused/open */ }
+                }
+            });
+        });
 
         // Lightbox
         (function() {
