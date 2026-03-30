@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Home | Taiping Homestay</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1C1C1C;       /* Deep Charcoal */
-            --secondary: #BCA37F;     /* Champagne Gold */
-            --light: #F9F8F6;         /* Warm Off-White */
-            --dark: #4A4A4A;          /* Soft Dark Grey */
-            --border: #E8E5DF;
+            --apple-text: #1d1d1f;
+            --apple-secondary: #6e6e73;
+            --apple-blue: #0071e3;
+            --apple-blue-hover: #0077ed;
+            --apple-bg: #ffffff;
+            --apple-bg-alt: #f5f5f7;
+            --apple-border: rgba(0,0,0,0.1);
+            --apple-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -24,112 +25,236 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.8;
-            font-family: 'Lato', sans-serif;
-            font-weight: 300;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            line-height: 1.7;
+            font-family: var(--apple-font);
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            color: var(--primary);
+            font-family: var(--apple-font);
+            font-weight: 700;
+            color: var(--apple-text);
+            letter-spacing: -0.02em;
         }
 
+        /* ── Hero ── */
         header {
-            background-image: linear-gradient(rgba(28, 28, 28, 0.4), rgba(28, 28, 28, 0.8)), url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            height: 75vh;
+            height: 88vh;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             text-align: center;
             color: white;
-            padding: 0 20px;
+            padding: 0 20px 90px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.05) 0%,
+                rgba(0,0,0,0.15) 40%,
+                rgba(0,0,0,0.55) 100%
+            );
+            pointer-events: none;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
         }
 
         header h1 {
-            font-size: 4.5rem;
-            margin-bottom: 15px;
-            letter-spacing: 4px;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
             color: white;
-            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1.05;
         }
-        
+
         header p {
-            font-size: 1.3rem;
-            margin-bottom: 45px;
-            max-width: 650px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            color: #E8E5DF;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 36px;
+            max-width: 600px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.6;
         }
 
         .cta-btn {
-            background-color: var(--secondary);
+            background-color: var(--apple-blue);
             color: white;
-            padding: 16px 35px;
+            padding: 15px 32px;
             text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 2px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 980px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
         }
 
         .cta-btn:hover {
-            background-color: #A38B67;
-            transform: translateY(-2px);
+            background-color: var(--apple-blue-hover);
+            transform: scale(1.02);
         }
 
+        /* ── Booking Widget ── */
+        .booking-widget {
+            background: white;
+            padding: 28px 32px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            max-width: 900px;
+            margin: -54px auto 0 auto;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-end;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .input-group {
+            flex: 1 1 180px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--apple-secondary);
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .input-group input, .input-group select {
+            padding: 11px 14px;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: var(--apple-font);
+            color: var(--apple-text);
+            outline: none;
+            background: #f5f5f7;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--apple-blue);
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+            background: #fff;
+        }
+
+        .input-group input[type="date"] {
+            cursor: pointer;
+        }
+
+        .check-availability-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 980px;
+            font-size: 0.92rem;
+            font-family: var(--apple-font);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            flex: 1 1 200px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .check-availability-btn:hover {
+            background-color: #1DA851;
+            transform: scale(1.02);
+        }
+
+        .check-availability-btn .whatsapp-icon-svg {
+            fill: white;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ── Container ── */
         .container {
-            max-width: 1200px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 100px 24px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: var(--dark);
-            margin-bottom: 60px;
-            font-size: 1.1rem;
-            font-style: italic;
-            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+            color: var(--apple-text);
         }
 
+        .section-subtitle {
+            text-align: center;
+            color: var(--apple-secondary);
+            margin-bottom: 64px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* ── Location Cards ── */
         .location-section {
             background: white;
-            border-radius: 4px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            margin-bottom: 70px;
-            border: 1px solid var(--border);
+            box-shadow: var(--apple-shadow);
+            margin-bottom: 48px;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .location-section:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
         }
 
         .location-header {
-            background: white;
-            padding: 35px 40px;
-            border-bottom: 1px solid var(--border);
-            border-top: 5px solid var(--secondary);
+            background: var(--apple-bg-alt);
+            padding: 32px 36px;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
         }
-        
+
         .location-header h3 {
-            font-size: 2.2rem;
-            color: var(--primary);
-            letter-spacing: 1px;
+            font-size: 1.8rem;
+            color: var(--apple-text);
+            letter-spacing: -0.02em;
+        }
+
+        .location-header p {
+            color: var(--apple-secondary);
+            font-size: 0.95rem;
+            margin-top: 6px;
         }
 
         .location-content {
@@ -138,27 +263,28 @@
         }
 
         .location-details {
-            padding: 50px 40px;
+            padding: 40px 36px;
         }
 
         .location-details > p {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            color: #555;
-            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--apple-secondary);
+            margin-bottom: 28px;
         }
 
         h4 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
+            color: var(--apple-secondary);
+            font-weight: 600;
         }
 
         .location-map {
             width: 100%;
-            height: 450px;
-            border-top: 1px solid var(--border);
+            height: 420px;
         }
 
         .location-map iframe {
@@ -167,225 +293,146 @@
             border: 0;
         }
 
+        /* ── Gallery ── */
         .gallery-container {
             width: 100%;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 12px;
+            margin-bottom: 8px;
         }
 
         .main-image {
             width: 100%;
-            height: 500px;
-            border-radius: 4px;
+            height: 460px;
+            border-radius: 14px;
             overflow: hidden;
-            margin-bottom: 15px;
-            background: #eee;
+            margin-bottom: 14px;
+            background: var(--apple-bg-alt);
         }
 
         .main-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.35s ease, transform 0.4s ease;
+            cursor: zoom-in;
+        }
+
+        .main-image:hover img {
+            transform: scale(1.02);
         }
 
         .thumbnail-slider {
             display: flex;
             overflow-x: auto;
-            gap: 15px;
-            padding-bottom: 10px;
+            gap: 10px;
+            padding-bottom: 8px;
             scrollbar-width: none;
         }
-        
+
         .thumbnail-slider::-webkit-scrollbar {
             display: none;
         }
 
         .thumbnail-slider img {
-            width: 140px;
-            height: 90px;
+            width: 120px;
+            height: 78px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
-            opacity: 0.5;
-            transition: all 0.3s ease;
+            opacity: 0.45;
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             border: 2px solid transparent;
             flex-shrink: 0;
         }
 
-        .thumbnail-slider img:hover, .thumbnail-slider img.active {
-            opacity: 1;
-            border-color: var(--secondary);
+        .thumbnail-slider img:hover {
+            opacity: 0.85;
+            transform: scale(1.04);
         }
 
+        .thumbnail-slider img.active {
+            opacity: 1;
+            border-color: var(--apple-blue);
+            box-shadow: 0 0 0 2px rgba(0,113,227,0.3);
+        }
+
+        /* ── Contact Section ── */
         .contact-section {
-            background-color: var(--primary);
-            color: white;
+            background-color: var(--apple-bg-alt);
+            color: var(--apple-text);
             text-align: center;
-            padding: 90px 20px;
-            border-radius: 4px;
-            margin-top: 30px;
+            padding: 90px 24px;
+            border-radius: 18px;
+            margin-top: 24px;
         }
 
         .contact-section h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            color: white;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            margin-bottom: 16px;
+            color: var(--apple-text);
+            letter-spacing: -0.03em;
         }
-        
+
         .contact-section p {
-            color: #CCC;
-            font-size: 1.1rem;
+            color: var(--apple-secondary);
+            font-size: 1.05rem;
         }
 
         .phone-number {
-            font-size: 3.5rem;
-            color: var(--secondary);
-            margin: 30px 0;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--apple-blue);
+            margin: 28px 0 8px;
             display: inline-block;
-            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .phone-number:hover {
-            color: #A38B67;
+            color: var(--apple-blue-hover);
         }
-        
+
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
             background-color: #25D366;
             color: white;
-            padding: 16px 35px;
+            padding: 14px 32px;
             text-decoration: none;
-            border-radius: 4px;
-            letter-spacing: 1px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            font-family: 'Lato', sans-serif;
-            text-transform: uppercase;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 24px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-family: var(--apple-font);
+            gap: 8px;
         }
 
         .whatsapp-btn:hover {
             background-color: #1DA851;
-            transform: translateY(-2px);
+            transform: scale(1.02);
         }
 
+        /* ── Footer ── */
         footer {
             text-align: center;
-            padding: 50px 20px;
-            color: #999;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            background: #111;
-        }
-
-        @media(max-width: 768px) {
-            header h1 { font-size: 2.8rem; }
-            .phone-number { font-size: 2.2rem; }
-            .location-header { text-align: center; padding: 25px 20px; }
-            .main-image { height: 300px; }
-            .thumbnail-slider img { width: 100px; height: 65px; }
-            .location-details { padding: 30px 20px; }
-        }
-    
-        /* Booking Widget Styles */
-        .booking-widget {
-            background: white;
-            padding: 30px;
-            border-radius: 4px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 900px;
-            margin: -60px auto 40px auto;
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: flex-end;
-            justify-content: center;
-            border: 1px solid var(--border);
-        }
-
-        .input-group {
-            flex: 1 1 200px;
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .input-group label {
-            font-family: 'Lato', sans-serif;
+            padding: 40px 20px;
+            color: var(--apple-secondary);
             font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888;
-            margin-bottom: 8px;
-            font-weight: 700;
+            background: var(--apple-bg-alt);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            letter-spacing: 0;
         }
 
-        .input-group input, .input-group select {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-            color: var(--primary);
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--secondary);
-        }
-
-        .check-availability-btn {
-            background-color: #25D366; /* WhatsApp green */
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 2px;
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1 1 200px;
-            height: 47px;
-            display: flex; /* Added for icon alignment */
-            align-items: center; /* Added for vertical alignment */
-            justify-content: center; /* Centers content */
-            gap: 8px; /* Space between text and icon */
-        }
-
-        .check-availability-btn:hover {
-            background-color: #1DA851; /* Darker green on hover */
-            transform: translateY(-2px);
-        }
-
-        /* Style for the WhatsApp icon within the button */
-        .check-availability-btn .whatsapp-icon-svg {
-            fill: white;
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Style to ensure date input fields have a pointer cursor */
-        .input-group input[type="date"] {
-            cursor: pointer;
-        }
-
-        /* Lightbox styles */
+        /* ── Lightbox ── */
         #lightbox-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -396,11 +443,11 @@
         }
 
         #lightbox-overlay img {
-            max-width: 95vw;
-            max-height: 90vh;
+            max-width: 92vw;
+            max-height: 88vh;
             object-fit: contain;
-            border-radius: 4px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            border-radius: 14px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
         }
 
         #lightbox-close {
@@ -408,25 +455,38 @@
             top: 20px;
             right: 28px;
             color: white;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             cursor: pointer;
             line-height: 1;
-            background: none;
+            background: rgba(255,255,255,0.15);
             border: none;
-            opacity: 0.85;
-            transition: opacity 0.2s;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+            transition: opacity 0.2s ease, background 0.2s ease;
             font-family: sans-serif;
         }
 
         #lightbox-close:hover {
             opacity: 1;
+            background: rgba(255,255,255,0.25);
         }
 
-        .main-image img {
-            cursor: zoom-in;
+        /* ── Responsive ── */
+        @media(max-width: 768px) {
+            header { padding: 0 20px 64px; }
+            .booking-widget { margin: -36px 16px 0; padding: 22px 20px; }
+            .container { padding: 72px 16px; }
+            .location-header { padding: 24px 20px; }
+            .location-details { padding: 28px 20px; }
+            .main-image { height: 280px; }
+            .thumbnail-slider img { width: 90px; height: 58px; }
+            .location-map { height: 320px; }
         }
-
-
 </style>
 
 </head>
