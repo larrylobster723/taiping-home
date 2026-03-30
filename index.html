@@ -380,6 +380,53 @@
             cursor: pointer;
         }
 
+        /* Lightbox styles */
+        #lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            background: none;
+            border: none;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+            font-family: sans-serif;
+        }
+
+        #lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .main-image img {
+            cursor: zoom-in;
+        }
+
+
 </style>
 
 </head>
@@ -403,11 +450,11 @@
         </div>
         <div class="input-group">
             <label for="checkin">Check-In</label>
-            <input type="date" id="checkin">
+            <input type="date" id="checkin" readonly onclick="this.removeAttribute('readonly'); if(this.showPicker) this.showPicker(); this.setAttribute('readonly','');">
         </div>
         <div class="input-group">
             <label for="checkout">Check-Out</label>
-            <input type="date" id="checkout">
+            <input type="date" id="checkout" readonly onclick="this.removeAttribute('readonly'); if(this.showPicker) this.showPicker(); this.setAttribute('readonly','');">
         </div>
         <button class="check-availability-btn" onclick="checkAvailability()">
     Check Availability
@@ -505,6 +552,12 @@
         </div>
     </div>
 
+    <!-- Lightbox Overlay -->
+    <div id="lightbox-overlay" role="dialog" aria-modal="true">
+        <button id="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <img id="lightbox-img" src="" alt="Full size gallery image">
+    </div>
+
     <footer>
         &copy; 2026 Simple Home Taiping Homestay. All rights reserved.
     </footer>
@@ -555,6 +608,46 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById("checkin").min = today;
         document.getElementById("checkout").min = today;
+
+        // Lightbox
+        (function() {
+            const overlay = document.getElementById('lightbox-overlay');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.getElementById('lightbox-close');
+
+            function openLightbox(src, alt) {
+                lightboxImg.src = src;
+                lightboxImg.alt = alt || '';
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Attach click to all main-image img elements
+            document.querySelectorAll('.main-image img').forEach(function(img) {
+                img.addEventListener('click', function() {
+                    openLightbox(this.src, this.alt);
+                });
+            });
+
+            // Close on overlay click (but not on image click)
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeLightbox();
+                }
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        })();
 
         function checkAvailability() {
             const location = document.getElementById('location').value;
