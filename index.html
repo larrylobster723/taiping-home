@@ -489,6 +489,14 @@
         }
 </style>
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GEVC02F6BW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GEVC02F6BW');
+  </script>
 </head>
 <body>
 
@@ -608,7 +616,7 @@
             <p><strong>Mr. James Kan</strong></p>
             
             <br>
-            <a href="https://wa.me/60123788781" class="whatsapp-btn">Chat with us on WhatsApp</a>
+            <a href="https://wa.me/60123788781" class="whatsapp-btn" onclick="gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: 'chat_button' })">Chat with us on WhatsApp</a>
         </div>
     </div>
 
@@ -750,6 +758,9 @@ Is this available?`;
             // Encode the message for URL
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+            // Track WhatsApp click
+            gtag('event', 'whatsapp_click', { event_category: 'engagement', event_label: 'check_availability' });
 
             // Open WhatsApp in a new tab
             window.open(whatsappUrl, '_blank');
